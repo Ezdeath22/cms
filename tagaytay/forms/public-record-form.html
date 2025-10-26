@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Record Request - Tagaytay City Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+     <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        .form-label { 
+            display: block; 
+            margin-bottom: 0.5rem; 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+            color: #374151; 
+        }
+        .form-input { 
+            display: block; 
+            width: 100%; 
+            padding: 0.5rem 0.75rem; 
+            border: 1px solid #d1d5db; 
+            border-radius: 0.375rem; 
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
+        }
+        .form-input::placeholder { 
+            color: #9ca3af;
+        }
+        .form-input:focus { 
+            outline: none; 
+            border-color: #f59e0b; 
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3); 
+        }
+
+        .form-select { 
+            display: block; 
+            width: 100%; 
+            padding: 0.6rem 0.75rem; 
+            border: 1px solid #d1d5db; 
+            border-radius: 0.375rem; 
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
+            background-color: white; 
+        }
+         .form-select:focus { 
+            outline: none; 
+            border-color: #f59e0b; 
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3); 
+        }
+        
+        .form-textarea { /* Added definition */
+             display: block; 
+             width: 100%; 
+             padding: 0.5rem 0.75rem; 
+             border: 1px solid #d1d5db; 
+             border-radius: 0.375rem; 
+             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+         .form-textarea::placeholder {
+             color: #9ca3af;
+         }
+         .form-textarea:focus {
+             outline: none;
+             border-color: #f59e0b;
+             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+         }
+
+        .submit-button { 
+            display: inline-flex; 
+            justify-content: center; 
+            padding: 0.75rem 1.5rem; 
+            border: 1px solid transparent; 
+            border-radius: 0.375rem; 
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+            color: white; 
+            background-color: #16a34a; 
+        }
+        .submit-button:hover { 
+             background-color: #15803d; 
+        }
+         .submit-button:focus { 
+             outline: none;
+             box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.4); 
+         }
+
+        .cancel-button { 
+            display: inline-flex; 
+            justify-content: center; 
+            padding: 0.75rem 1.5rem; 
+            border: 1px solid #d1d5db; 
+            border-radius: 0.375rem; 
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+            color: #374151; 
+            background-color: white; 
+        }
+        .cancel-button:hover { 
+             background-color: #f3f4f6; 
+        }
+         .cancel-button:focus { 
+             outline: none;
+             box-shadow: 0 0 0 3px rgba(209, 213, 219, 0.4); 
+         }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- === HEADER / TOP NAVIGATION === -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="flex justify-between items-center h-16">
+                 <div class="flex items-center gap-3">
+                     <img src="../image/tagaytayseal1.png" alt="Tagaytay City Seal" class="h-12 w-12">
+                     <div class="flex flex-col">
+                         <span class="font-bold text-sm text-gray-500">Tagaytay City</span>
+                         <span class="font-bold text-lg text-green-800 leading-tight">City Portal</span>
+                     </div>
+                 </div>
+                 <div class="flex items-center gap-4">
+                     <a href="../index.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                     <a href="../services.html" class="text-green-700 bg-green-50 px-3 py-2 rounded-md text-sm font-medium">Services</a> 
+                     <a href="../transparency.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Transparency</a>
+                     <a href="../officials.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Officials</a>
+                     <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>
+                     <div id="auth-section" class="relative">
+                         <a id="auth-link-login" href="login.html" class="flex items-center gap-2 text-gray-600 hover:text-green-700">
+                             <span class="text-sm font-medium">Log In</span>
+                         </a>
+                         <div id="auth-dropdown" class="hidden">
+                             {/* User Dropdown Content */}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </nav>
+
+    <!-- === MAIN FORM CONTENT === -->
+     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="max-w-2xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg border border-gray-200">
+             <div class="flex items-center gap-3 mb-6 pb-4 border-b">
+                 <i data-lucide="file-text" class="w-8 h-8 text-green-600"></i>
+                <h1 class="text-2xl font-semibold text-gray-900">Public Record Request</h1>
+            </div>
+            
+            <form id="record-request-form" class="space-y-5">
+                 <input type="hidden" name="service_type" value="public-record">
+                
+                <div>
+                    <label for="record-type" class="form-label">Type of Record Requested</label>
+                    <select id="record-type" name="record_type" required class="form-select">
+                        <option value="">-- Select Record Type --</option>
+                        <option value="birth_certificate">Birth Certificate (PSA/LCR Copy)</option>
+                        <option value="marriage_certificate">Marriage Certificate (PSA/LCR Copy)</option>
+                        <option value="cenomar">Certificate of No Marriage (CENOMAR)</option>
+                        <option value="death_certificate">Death Certificate</option>
+                        <option value="business_permit_copy">Copy of Business Permit</option>
+                        <option value="tax_declaration_copy">Copy of Tax Declaration</option>
+                        <option value="other">Other (Please specify below)</option>
+                    </select>
+                </div>
+
+                 <div>
+                    <label for="requester-name" class="form-label">Requester's Full Name</label>
+                    <input type="text" id="requester-name" name="requester_name" required class="form-input" placeholder="Last Name, First Name, Middle Initial">
+                </div>
+
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="email-record" class="form-label">Email Address</label>
+                        <input type="email" id="email-record" name="email" required class="form-input" placeholder="you@example.com">
+                    </div>
+                     <div>
+                        <label for="phone-record" class="form-label">Contact Number</label>
+                        <input type="tel" id="phone-record" name="phone" required class="form-input" placeholder="09xxxxxxxxx">
+                    </div>
+                 </div>
+
+                 <!-- Fields for specific record types (Example for Birth Cert) -->
+                 <div id="birth-cert-fields" class="space-y-4 border-t pt-4 hidden">
+                    <p class="text-sm font-medium text-gray-700">Details for Birth Certificate:</p>
+                     <div>
+                        <label for="birth-name" class="form-label">Full Name on Certificate</label>
+                        <input type="text" id="birth-name" name="birth_name" class="form-input">
+                    </div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                             <label for="birth-date" class="form-label">Date of Birth</label>
+                             <input type="date" id="birth-date" name="birth_date" class="form-input">
+                        </div>
+                         <div>
+                             <label for="birth-place" class="form-label">Place of Birth (City/Municipality)</label>
+                             <input type="text" id="birth-place" name="birth_place" class="form-input">
+                        </div>
+                    </div>
+                     <div>
+                        <label for="father-name" class="form-label">Father's Full Name</label>
+                        <input type="text" id="father-name" name="father_name" class="form-input">
+                    </div>
+                     <div>
+                        <label for="mother-maiden-name" class="form-label">Mother's Maiden Name</label>
+                        <input type="text" id="mother-maiden-name" name="mother_maiden_name" class="form-input">
+                    </div>
+                 </div>
+                 <!-- Add similar conditional field sections for other record types -->
+
+                 <div>
+                    <label for="purpose" class="form-label">Purpose of Request</label>
+                    <textarea id="purpose" name="purpose" rows="3" required class="form-textarea" placeholder="Briefly state why you need this record"></textarea>
+                </div>
+
+                 <div>
+                    <label for="id-upload" class="form-label">Upload Valid ID of Requester</label>
+                    <input type="file" id="id-upload" name="valid_id" accept="image/*,.pdf" required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                     <p class="mt-1 text-xs text-gray-500">PDF, JPG, PNG allowed.</p>
+                </div>
+
+
+                <!-- Form Actions -->
+                <div class="pt-5 border-t mt-6 flex justify-end gap-3">
+                    <a href="../services.html" class="cancel-button">Cancel</a>
+                    <button type="submit" class="submit-button">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </main>
+  <footer class="bg-green-900 text-white mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h5 class="font-bold text-lg mb-3">About</h5>
+                    <p class="text-sm text-green-200">This portal provides transparent access to public projects within Tagaytay City.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../index.html" class="text-green-100 hover:text-white">Project List</a></li>
+                        <li><a href="../index.html" class="text-green-100 hover:text-white">Project Map</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Related Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="http://tagaytay.gov.ph/index.html" class="text-green-100 hover:text-white">Official Tagaytay Website</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white">National Gov Portal</a></li>
+                        <li><a href="../transparency.html" class="text-green-100 hover:text-white">Transparency Seal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Contact Us</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="phone" class="w-4 h-4"></i>(046)-888-9500
+</li>
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="mail" class="w-4 h-4"></i>info@tagaytay.gov.ph</li>
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="map-pin" class="w-4 h-4"></i>Tagaytay City Hall</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-6 text-center text-sm text-green-200">
+                <p>© 2025 Tagaytay City Government. All rights reserved. (Project Demo)</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="details-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 id="modal-title" class="text-lg font-semibold text-gray-900">Project Details</h3>
+                <button id="modal-close-btn" class="text-gray-400 hover:text-gray-600">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-600">This is where the detailed information for the project would appear. For this demo, we've just opened this modal.</p>
+                <img src="https://picsum.photos/seed/modal/400/200" alt="Project detail" class="w-full h-48 object-cover rounded-md mt-4">
+            </div>
+            <div class="p-4 bg-gray-50 border-t rounded-b-lg flex justify-end">
+                <button id="modal-close-btn-footer" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md text-sm">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            const recordTypeSelect = document.getElementById('record-type');
+            const birthCertFields = document.getElementById('birth-cert-fields');
+            // Add references to other conditional field divs here
+
+            // Show/Hide specific fields based on record type
+            if(recordTypeSelect) {
+                recordTypeSelect.addEventListener('change', () => {
+                    const selectedType = recordTypeSelect.value;
+                    // Hide all specific fieldsets first
+                    if(birthCertFields) birthCertFields.classList.add('hidden');
+                    // Add lines here to hide other fieldsets
+
+                    // Show the relevant fieldset
+                    if (selectedType === 'birth_certificate') {
+                         if(birthCertFields) birthCertFields.classList.remove('hidden');
+                    } 
+                    // Add 'else if' blocks for other types like marriage_certificate etc.
+                });
+            }
+
+            // Basic form submission handler (placeholder)
+            const form = document.getElementById('record-request-form');
+            if(form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    console.log('Public Record Request Form Submitted');
+                    // Add AJAX submission logic here
+                    alert('Request submitted (placeholder)! Please wait for an email regarding payment and processing.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

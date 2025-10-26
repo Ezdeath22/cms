@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tagaytay City Portal</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
+    .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,.5); }
+    .news-item { border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem; margin-bottom: 1rem; }
+    .news-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .fade-in { opacity: 0; transform: translateY(6px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-white">
+
+  <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-3">
+          <img src="image/tagaytayseal1.png" alt="Tagaytay City Seal" class="h-12 w-12">
+          <div class="flex flex-col">
+            <span class="font-bold text-sm text-gray-500">Tagaytay City</span>
+            <span class="font-bold text-lg text-green-800 leading-tight">City Portal</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="index.html" class="text-green-700 bg-green-50 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+          <a href="services.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+          <a href="transparency.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Transparency</a>
+          <a href="officials.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Officials</a>
+          <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>
+
+          <div id="auth-section" class="relative">
+            <a id="auth-link-login" href="login.html" class="flex items-center gap-2 text-gray-600 hover:text-green-700">
+              <span class="text-sm font-medium">Log In</span>
+            </a>
+            <div id="auth-dropdown" class="hidden">
+              <button id="auth-dropdown-button" class="flex items-center gap-2 text-gray-600 hover:text-green-700">
+                <img id="user-avatar" class="h-8 w-8 rounded-full object-cover" src="https://picsum.photos/seed/user/100/100" alt="User avatar">
+                <span id="username-display" class="text-sm font-medium max-w-[150px] truncate">user@email.com</span>
+                <i id="user-chevron" data-lucide="chevron-down" class="w-4 h-4"></i>
+              </button>
+              <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden">
+                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>
+                <button id="logout-button" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Log Out</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="relative h-screen overflow-hidden text-white">
+    <video id="background-video" autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+      <source src="video/videobg.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 z-10"></div>
+    <div class="relative z-20 h-full flex flex-col justify-center items-center">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <img src="image/tagaytayseal1.png" alt="Tagaytay City Seal" class="h-24 w-24 mx-auto mb-4">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-shadow">Tagaytay City Public Portal</h1>
+        <p class="text-lg md:text-xl text-green-100 text-shadow">News, Services, and Information for Tagaytay Residents</p>
+      </div>
+    </div>
+  </header>
+<section class="bg-gray-50 py-12 lg:py-16">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Two-column layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
+
+      <!-- Left: Image -->
+      <div>
+        <img
+          src="image/cityhall.png"
+          alt="Tagaytay City Hall"
+          class="rounded-lg shadow-xl w-full h-full object-cover border-4 border-white"
+        />
+        <p class="text-center text-sm text-gray-600 mt-2 italic">
+          The Tagaytay City Hall complex.
+        </p>
+      </div>
+
+      <!-- Right: Text -->
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200 flex items-center gap-2">
+          <i data-lucide="mountain-snow" class="w-7 h-7 text-green-700"></i>
+          Welcome to Tagaytay City
+        </h2>
+
+        <div class="text-gray-700 leading-relaxed space-y-4">
+          <p>
+            Nestled along a ridge overlooking the majestic Taal Volcano and Lake, Tagaytay City is a premier tourist destination in the Philippines, renowned for its cool climate, breathtaking vistas, and vibrant atmosphere. Just a short drive from Metro Manila, it offers a refreshing highland escape.
+          </p>
+
+          <h3 class="text-xl font-semibold text-gray-800 pt-3">A Glimpse into History</h3>
+          <p>
+            The name "Tagaytay" is believed to derive from the Tagalog words "taga" (to cut) and "itay" (father), echoing a local legend of a dramatic hunt. During revolutionary times, its ridges provided strategic cover. Established as a chartered city on June 21, 1938, Tagaytay was envisioned as a key tourism zone, a vision it fulfills today as a hub for leisure, dining, and agriculture.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+
+      <div class="lg:col-span-2 space-y-3 bg-white p-6 rounded-lg shadow-md border border-gray-100">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-2xl font-semibold text-gray-800 pb-2 border-b border-gray-200 w-full flex items-center gap-2">
+            <i data-lucide="newspaper" class="w-6 h-6 text-green-700"></i> Latest News
+          </h2>
+        </div>
+
+        <div id="news-feed" class="space-y-4 mt-2">
+          <p class="text-gray-500 italic">Loading news...</p>
+        </div>
+
+        <div class="text-center mt-6 pt-4 border-t border-gray-100">
+          <a id="more-news-link"
+             href="https://news.google.com/search?q=Tagaytay%20City%20when%3A7d&hl=en-PH&gl=PH&ceid=PH%3Aen"
+             target="_blank" rel="noopener noreferrer"
+             class="text-sm font-medium text-green-600 hover:text-green-800 inline-flex items-center gap-1">
+            View More on Google News (7 days)
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-1 mt-10 lg:mt-0">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 sticky top-20">
+          <div class="p-3 border-b border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800">Tagaytay City Map</h3>
+          </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61897.24553798952!2d120.91617752167968!3d14.11711843241924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd7993d98ed5f3%3A0x47065e71239c3a3b!2sTagaytay%2C%20Cavite!5e0!3m2!1sen!2sph!4v1729914030680!5m2!1sen!2sph"
+            class="w-full h-[500px] border-0"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-green-900 text-white mt-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h5 class="font-bold text-lg mb-3">About</h5>
+          <p class="text-sm text-green-200">This portal provides information about Tagaytay City.</p>
+        </div>
+        <div>
+          <h5 class="font-bold text-lg mb-3">Quick Links</h5>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="text-green-100 hover:text-white">Home</a></li>
+            <li><a href="services.html" class="text-green-100 hover:text-white">Services</a></li>
+            <li><a href="transparency.html" class="text-green-100 hover:text-white">Transparency</a></li>
+            <li><a href="officials.html" class="text-green-100 hover:text-white">Officials</a></li>
+            <li><a href="#" class="text-green-100 hover:text-white">Submit Feedback</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold text-lg mb-3">Related Links</h5>
+          <ul class="space-y-2 text-sm">
+            <li><a href="http://tagaytay.gov.ph/index.html" target="_blank" rel="noopener noreferrer" class="text-green-100 hover:text-white">Official Tagaytay Website</a></li>
+            <li><a href="#" class="text-green-100 hover:text-white">National Gov Portal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold text-lg mb-3">Contact Us</h5>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-center gap-2 text-green-100"><i data-lucide="phone" class="w-4 h-4"></i>(046)-888-9500</li>
+            <li class="flex items-center gap-2 text-green-100"><i data-lucide="mail" class="w-4 h-4"></i>info@tagaytay.gov.ph</li>
+            <li class="flex items-center gap-2 text-green-100"><i data-lucide="map-pin" class="w-4 h-4"></i>Tagaytay City Hall</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-green-700 mt-8 pt-6 text-center text-sm text-green-200">
+        <p>© 2025 Tagaytay City Government. All rights reserved. (Project Demo)</p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide?.createIcons) lucide.createIcons();
+
+    // =======================================================
+    // == LATEST NEWS - POWERED BY PHP + SERPAPI ==
+    // =======================================================
+
+    // This points to your PHP file
+    const YOUR_PROXY_URL = 'get-news.php';
+
+    const newsFeedContainer = document.getElementById('news-feed');
+    const moreNewsLink = document.getElementById('more-news-link');
+
+    const showLoading = (msg = 'Loading news…') => {
+      if (!newsFeedContainer) return;
+      newsFeedContainer.innerHTML = `<p class="text-gray-500 italic">${msg}</p>`;
+    };
+
+    const showError = (msg) => {
+      if (!newsFeedContainer) return;
+      newsFeedContainer.innerHTML = `<p class="text-red-600">${msg}</p>`;
+    };
+
+    const formatPHTime = (dateStr) => {
+      // SerpApi often returns "X hours/days ago", which is fine to use directly.
+      if (dateStr && (dateStr.includes('ago') || dateStr.includes('yesterday'))) {
+        return dateStr;
+      }
+      // Fallback for full date strings
+      try {
+        const d = new Date(dateStr);
+        return d.toLocaleString('en-PH', {
+          year: 'numeric', month: 'short', day: 'numeric',
+          hour: 'numeric', minute: '2-digit'
+        });
+      } catch { return dateStr || 'Recently'; } // Fallback
+    };
+
+    function renderArticles(articles) {
+      if (!newsFeedContainer) return;
+      newsFeedContainer.innerHTML = '';
+
+      if (!articles || !articles.length) {
+        newsFeedContainer.innerHTML = '<p class="text-gray-500">No recent Tagaytay news found.</p>';
+        return;
+      }
+      
+      // Get the 4 latest articles
+      const latestArticles = articles.slice(0, 4);
+
+      latestArticles.forEach((it) => {
+        // --- Field names for SerpApi 'google_news_light' ---
+        const articleTitle = it.title || 'Untitled article';
+        const articleLink = it.link || '#';
+        const articleImage = it.thumbnail; // Use 'thumbnail'
+        const articleDesc = it.snippet; // Use 'snippet'
+        const articleSource = it.source || 'News Source';
+        const articleDate = it.date || new Date().toISOString(); // Use 'date'
+        // ----------------------------------------------------
+
+        const card = document.createElement('div');
+        card.className = 'news-item fade-in';
+
+        const row = document.createElement('div');
+        row.className = 'flex gap-4';
+
+        if (articleImage) {
+          const imgWrap = document.createElement('div');
+          imgWrap.className = 'flex-shrink-0 w-28 h-20 overflow-hidden rounded';
+          const img = document.createElement('img');
+          img.src = articleImage;
+          img.alt = articleTitle;
+          img.className = 'w-28 h-20 object-cover';
+          imgWrap.appendChild(img);
+          row.appendChild(imgWrap);
+        }
+
+        const content = document.createElement('div');
+        content.className = 'flex-1';
+
+        const h3 = document.createElement('h3');
+        h3.className = 'font-semibold text-lg text-green-900 mb-1';
+
+        const link = document.createElement('a');
+        link.href = articleLink;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+       link.className = 'hover:underline hover:text-green-700';
+        link.textContent = articleTitle;
+        h3.appendChild(link);
+
+        const desc = document.createElement('p');
+        desc.className = 'text-sm text-gray-600 mb-2';
+        desc.innerHTML = articleDesc; // Use innerHTML as snippet can have <b> tags
+
+        const meta = document.createElement('div');
+        meta.className = 'text-xs text-gray-500';
+        meta.textContent = `${articleSource} — ${formatPHTime(articleDate)}`;
+
+        content.appendChild(h3);
+        if (articleDesc) content.appendChild(desc);
+        content.appendChild(meta);
+
+        row.appendChild(content);
+        card.appendChild(row);
+        newsFeedContainer.appendChild(card);
+      });
+
+      // Fade-in effect
+      const fadeItems = newsFeedContainer.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      fadeItems.forEach(el => observer.observe(el));
+    }
+
+    async function loadNews() {
+      try {
+        showLoading('Loading Tagaytay stories…');
+
+        const ctrl = new AbortController();
+        const timeout = setTimeout(() => ctrl.abort(), 15000);
+        
+        // This calls get-news.php
+        const res = await fetch(YOUR_PROXY_URL, { signal: ctrl.signal });
+        clearTimeout(timeout); 
+
+        if (!res.ok) {
+          // This will catch 404 or 500 errors from the server
+         throw new Error(`Server error: ${res.status} ${res.statusText}`);
+        }
+
+        const data = await res.json(); 
+        
+        if (data.error) {
+           // This will show an error from SerpApi, e.g., "Invalid API key"
+          throw new Error(data.error_message || data.error);
+        }
+        
+        // The list of articles is in 'data.news_results' or 'data.top_stories'
+        const articles = data.news_results || data.top_stories; 
+        
+        if (Array.isArray(articles)) {
+          renderArticles(articles);
+        } else {
+          console.error('API response was not an array:', data);
+          throw new Error('Could not parse news articles from API response.');
+        }
+        
+        // Update the "View More" link
+        if (moreNewsLink) {
+          moreNewsLink.href = `https://news.google.com/search?q=${encodeURIComponent('Tagaytay City when:7d')}&hl=en-PH&gl=PH&ceid=PH%3Aen`;
+        }
+        
+      } catch (err) {
+        console.error('News error:', err);
+       if (err.name === 'AbortError') {
+          showError('Could not load Tagaytay news: Request timed out.');
+        } else if (err.message.includes('Unexpected token')) {
+          // Catch the specific error
+          showError('Could not load news: A PHP server error occurred. Check your server logs and get-news.php file.');
+        } else {
+          showError('Could not load Tagaytay news: ' + (err.message || 'Failed to fetch'));
+        }
+      }
+    }
+
+    loadNews();
+
+    // =======================================================
+    // == OTHER PAGE SCRIPT (Auth, Video, etc.) ==
+    // =======================================================
+
+    // Simple auth display logic (placeholder)
+    const authLinkLogin = document.getElementById('auth-link-login');
+    const authDropdown  = document.getElementById('auth-dropdown');
+    const logoutButton  = document.getElementById('logout-button');
+    if (authLinkLogin) authLinkLogin.classList.remove('hidden');
+    if (authDropdown)  authDropdown.classList.add('hidden');
+    if (logoutButton) {
+      logoutButton.addEventListener('click', () => {
+        const menu = document.getElementById('dropdown-menu');
+        if (menu) menu.classList.add('hidden');
+        if (authLinkLogin) authLinkLogin.classList.remove('hidden');
+        if (authDropdown)  authDropdown.classList.add('hidden');
+      });
+    }
+
+    // Video: double-click to toggle mute/controls
+    const video = document.getElementById('background-video');
+    if (video) {
+      video.addEventListener('dblclick', () => {
+        video.muted = !video.muted;
+        video.hasAttribute('controls') ? video.removeAttribute('controls') : video.setAttribute('controls','true');
+      });
+    }
+  });
+</script>
+</body>
+</html>

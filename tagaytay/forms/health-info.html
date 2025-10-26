@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Services Info - Tagaytay City Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        .info-link { 
+            color: #16a34a; /* green-600 */
+        }
+        .info-link:hover { /* Added :hover pseudo-class */
+            text-decoration: underline; 
+        }
+     </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- === HEADER / TOP NAVIGATION === -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                 <div class="flex items-center gap-3">
+                     <img src="../image/tagaytayseal1.png" alt="Tagaytay City Seal" class="h-12 w-12">
+                     <div class="flex flex-col">
+                         <span class="font-bold text-sm text-gray-500">Tagaytay City</span>
+                         <span class="font-bold text-lg text-green-800 leading-tight">City Portal</span>
+                     </div>
+                 </div>
+                <div class="flex items-center gap-4">
+                     <a href="../index.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                     <a href="../services.html" class="text-green-700 bg-green-50 px-3 py-2 rounded-md text-sm font-medium">Services</a> 
+                     <a href="../transparency.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Transparency</a>
+                     <a href="../officials.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Officials</a>
+                     <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>
+                    <div id="auth-section" class="relative">
+                         <a id="auth-link-login" href="login.html" class="flex items-center gap-2 text-gray-600 hover:text-green-700">
+                             <span class="text-sm font-medium">Log In</span>
+                         </a>
+                        <div id="auth-dropdown" class="hidden">{/* Dropdown */}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </nav>
+
+    <!-- === MAIN INFO CONTENT === -->
+     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="max-w-2xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg border border-gray-200">
+             <div class="flex items-center gap-3 mb-6 pb-4 border-b">
+                 <i data-lucide="heart-pulse" class="w-8 h-8 text-green-600"></i>
+                <h1 class="text-2xl font-semibold text-gray-900">Health Services Information</h1>
+            </div>
+            
+             <div class="prose max-w-none text-gray-700">
+                <p>The Tagaytay City Health Office provides various services to residents. For the latest schedules, announcements, and specific program details, please refer to the following resources:</p>
+                
+                 <ul class="list-disc pl-5 space-y-2 mt-4">
+                    <li>Visit the <a href="http://tagaytay.gov.ph" target="_blank" rel="noopener noreferrer" class="info-link">Official Tagaytay City Website</a> for announcements.</li>
+                    <li>Contact the City Health Office directly at [Insert CHO Phone Number Here].</li>
+                    <li>Visit your nearest Barangay Health Center for local schedules and services.</li>
+                 </ul>
+
+                 <p class="mt-4">Services may include:</p>
+                  <ul class="list-disc pl-5 space-y-1 mt-2 text-sm">
+                      <li>Consultations</li>
+                      <li>Vaccinations (Routine & Special Programs)</li>
+                      <li>Family Planning</li>
+                      <li>Prenatal Care</li>
+                      <li>Tuberculosis (TB) DOTS</li>
+                      <li>Dental Services (check availability)</li>
+                      <li>Medical Missions (announced periodically)</li>
+                  </ul>
+                 <p class="mt-6 text-xs text-gray-500">Information here is for general guidance only. Please verify directly with the City Health Office or your Barangay Health Center.</p>
+             </div>
+
+             <div class="pt-5 border-t mt-6 flex justify-end">
+                <a href="../services.html" class="inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">Back to Services</a>
+            </div>
+        </div>
+    </main>
+  <footer class="bg-green-900 text-white mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h5 class="font-bold text-lg mb-3">About</h5>
+                    <p class="text-sm text-green-200">This portal provides transparent access to public projects within Tagaytay City.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../index.html" class="text-green-100 hover:text-white">Project List</a></li>
+                        <li><a href="../index.html" class="text-green-100 hover:text-white">Project Map</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Related Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="http://tagaytay.gov.ph/index.html" class="text-green-100 hover:text-white">Official Tagaytay Website</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white">National Gov Portal</a></li>
+                        <li><a href="../transparency.html" class="text-green-100 hover:text-white">Transparency Seal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Contact Us</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="phone" class="w-4 h-4"></i>(046)-888-9500</li>
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="mail" class="w-4 h-4"></i>info@tagaytay.gov.ph</li>
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="map-pin" class="w-4 h-4"></i>Tagaytay City Hall</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-6 text-center text-sm text-green-200">
+                <p>© 2025 Tagaytay City Government. All rights reserved. (Project Demo)</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="details-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 id="modal-title" class="text-lg font-semibold text-gray-900">Project Details</h3>
+                <button id="modal-close-btn" class="text-gray-400 hover:text-gray-600">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-600">This is where the detailed information for the project would appear. For this demo, we've just opened this modal.</p>
+                <img src="https://picsum.photos/seed/modal/400/200" alt="Project detail" class="w-full h-48 object-cover rounded-md mt-4">
+            </div>
+            <div class="p-4 bg-gray-50 border-t rounded-b-lg flex justify-end">
+                <button id="modal-close-btn-footer" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md text-sm">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

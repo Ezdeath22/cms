@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Officials - Tagaytay City Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* White background */
+        }
+        .text-shadow {
+             text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- === HEADER / TOP NAVIGATION === -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <img src="image/tagaytayseal1.png" alt="Tagaytay City Seal" class="h-12 w-12">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-sm text-gray-500">Tagaytay City</span>
+                        <span class="font-bold text-lg text-green-800 leading-tight">City Portal</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <!-- Navigation Links -->
+                    <a href="index.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    
+                    <a href="services.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="transparency.html" class="text-gray-600 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Transparency</a>
+                    <!-- Active Link for Officials Page -->
+                    <a href="officials.html" class="text-green-700 bg-green-50 px-3 py-2 rounded-md text-sm font-medium">Officials</a> 
+                    <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>
+                    
+                    <div id="auth-section" class="relative">
+                        <a id="auth-link-login" href="login.html" class="flex items-center gap-2 text-gray-600 hover:text-green-700">
+                            <span class="text-sm font-medium">Log In</span>
+                        </a>
+                        <div id="auth-dropdown" class="hidden">
+                            <button id="auth-dropdown-button" class="flex items-center gap-2 text-gray-600 hover:text-green-700">
+                                <img id="user-avatar" class="h-8 w-8 rounded-full object-cover" src="https://picsum.photos/seed/user/100/100" alt="User avatar">
+                                <span id="username-display" class="text-sm font-medium max-w-[150px] truncate">user@email.com</span>
+                                <i id="user-chevron" data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </button>
+                            <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>
+                                <button id="logout-button" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Log Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HERO / PAGE TITLE === -->
+    <header class="bg-gradient-to-r from-green-700 to-green-900 text-white relative">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <i data-lucide="users" class="w-16 h-16 mx-auto mb-4 text-green-300"></i>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2 text-shadow">Tagaytay City Officials</h1>
+            <p class="text-lg text-green-100 text-shadow">Meet the leaders serving our city.</p>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTENT === -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Mayor and Vice Mayor Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">Executive Department</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Mayor Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 text-center border border-gray-100 fade-in">
+                    <img src="http://tagaytay.gov.ph/images/officials/Mayor%20Brent%202.jpg" alt="City Mayor" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-green-100">
+                    <h3 class="text-xl font-bold text-green-800">HON. AIZACK BRENT D. TOLENTINO</h3>
+                    <p class="text-gray-600">City Mayor</p>
+                </div>
+                <!-- Vice Mayor Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 text-center border border-gray-100 fade-in">
+                    <img src="http://tagaytay.gov.ph/images/officials/VM%20Agnes.jpg" alt="City Vice Mayor" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-green-100">
+                    <h3 class="text-xl font-bold text-green-800">HON. AGNES D. TOLENTINO, DMD</h3>
+                    <p class="text-gray-600">City Vice Mayor</p>
+                </div>
+            </div>
+        </section>
+
+    <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">Sangguniang Panlungsod (City Council)</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                    <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Miko.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover"> 
+                    <h4 class="font-semibold text-gray-700">HON. MICHAEL FRANCIS "MICKO" C. TOLENTINO</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Jojit.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. JOJIT S. DESINGAÑO</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Bianca.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. BIANCA CAMILLE U. PELLO</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Rey.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. REYNOSO M. ESPIRITU</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Fati.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. FATIMA G. GUADAÑA</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Junny.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. DOROTEO N. MARASIGAN</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Leo.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. LEO ANGELO T. DE CASTRO</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Jennifer.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. JENNIFER R. MANGUINAO</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Annabelle.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. ANNABELLE M. SOLIS</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Konsi%20Gener.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. GENER M. VERGARA</h4>
+                    <p class="text-sm text-gray-500">City Councilor</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/Kap%20Johnny%20ABC.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. JUANITO N. RAMOS</h4>
+                    <p class="text-sm text-gray-500">ABC President</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-100 fade-in">
+                     <img src="http://tagaytay.gov.ph/images/officials/SK%20Pres.jpg" alt="Councilor" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover">
+                    <h4 class="font-semibold text-gray-700">HON. MARK ERWIN D. MERCADO</h4>
+                    <p class="text-sm text-gray-500">SK Federation President</p>
+                </div>
+            </div>
+        </section>
+
+      
+
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer class="bg-green-900 text-white mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Footer content (same as other pages) -->
+             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h5 class="font-bold text-lg mb-3">About</h5>
+                    <p class="text-sm text-green-200">This portal provides transparent access to public projects within Tagaytay City.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-green-100 hover:text-white">Project List</a></li>
+                        <li><a href="index.html" class="text-green-100 hover:text-white">Project Map</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Related Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="http://tagaytay.gov.ph/index.html" class="text-green-100 hover:text-white">Official Tagaytay Website</a></li>
+                        <li><a href="#" class="text-green-100 hover:text-white">National Gov Portal</a></li>
+                        <li><a href="transparency.html" class="text-green-100 hover:text-white">Transparency Seal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Contact Us</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="phone" class="w-4 h-4"></i>(046)-888-9500</li>
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="mail" class="w-4 h-4"></i>info@tagaytay.gov.ph</li>
+                        <li class="flex items-center gap-2 text-green-100"><i data-lucide="map-pin" class="w-4 h-4"></i>Tagaytay City Hall</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-6 text-center text-sm text-green-200">
+                <p>© 2025 Tagaytay City Government. All rights reserved. (Project Demo)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            // Placeholder auth logic (same as other pages)
+            const authLinkLogin = document.getElementById('auth-link-login');
+            const authDropdown = document.getElementById('auth-dropdown');
+            const logoutButton = document.getElementById('logout-button');
+            // Check login status (placeholder)
+            // if (localStorage.getItem('userToken')) {
+            //     authLinkLogin.classList.add('hidden');
+            //     authDropdown.classList.remove('hidden');
+            //     document.getElementById('username-display').textContent = localStorage.getItem('username') || 'User';
+            // } else {
+                 authLinkLogin.classList.remove('hidden');
+                 authDropdown.classList.add('hidden');
+            // }
+            if(logoutButton) {
+                logoutButton.addEventListener('click', () => { /* Placeholder logout */ });
+            }
+        });
+    </script>
+</body>
+</html>

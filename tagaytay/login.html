@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tagaytay City Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-md">
+        <div class="flex items-center justify-center gap-3 mb-6">
+            <img src="image/tagaytayseal1.png" alt="Tagaytay City Seal" class="h-12 w-12">
+            <div class="flex flex-col">
+                <span class="font-bold text-sm text-gray-500">Tagaytay City</span>
+                <span class="font-bold text-lg text-green-800 leading-tight">City Portal</span>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 id="auth-modal-title" class="text-lg font-semibold text-gray-900">Log In to Your Account</h3>
+                <a href="index.html" class="text-gray-400 hover:text-gray-600" title="Back to portal">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </a>
+            </div>
+            <form id="auth-form" class="p-6 space-y-4">
+                <div>
+                    <label for="auth-email" class="block text-sm font-medium text-gray-700">Email address</label>
+                    <input type="email" id="auth-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm" placeholder="you@example.com">
+                </div>
+                <div>
+                    <label for="auth-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="auth-password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm" placeholder="••••••••">
+                </div>
+                
+                <p id="auth-error" class="text-sm text-red-600"></p>
+                <p id="auth-success" class="text-sm text-green-600"></p>
+
+                <button id="auth-submit-btn" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    Log In
+                </button>
+
+                <p class="text-sm text-center text-gray-500">
+                    Need an account?
+                    <a href="register.html" class="font-medium text-green-600 hover:text-green-500">
+                         <span class="font-semibold">Sign Up</span>
+                    </a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js" defer></script> 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- B. INITIALIZE LUCIDE ---
+            lucide.createIcons();
+            
+            // --- D. DOM ELEMENT SELECTORS ---
+            const authForm = document.getElementById('auth-form');
+            const authEmailInput = document.getElementById('auth-email');
+            const authPasswordInput = document.getElementById('auth-password');
+            const authSubmitBtn = document.getElementById('auth-submit-btn');
+            const authError = document.getElementById('auth-error');
+            const authSuccess = document.getElementById('auth-success');
+
+            // --- G. EVENT LISTENERS ---
+            authForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Stop the form from submitting normally
+                
+                authError.textContent = '';
+                authSuccess.textContent = '';
+                authSubmitBtn.disabled = true;
+                authSubmitBtn.textContent = 'Processing...';
+                
+                // --- Placeholder for localhost backend call ---
+                console.log('Form submitted. Ready to send to backend (localhost).');
+                console.log('Email:', authEmailInput.value);
+                
+                // Simulate a successful login
+                // In your real app, you would get a token from your backend
+                // and store it in localStorage or sessionStorage.
+                
+                // Example:
+                // localStorage.setItem('userToken', 'your-jwt-token-from-backend');
+                // localStorage.setItem('username', 'user@example.com');
+                
+                authSuccess.textContent = 'Success! Redirecting you...';
+                
+                setTimeout(() => {
+                    // Redirect to the main portal page
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
