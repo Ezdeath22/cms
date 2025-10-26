@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taguig City Project Portal</title>
+    <!-- 1. Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Include Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 3. Include Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 4. Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Use a light gray background */
+        }
+        /* Custom scrollbar for project list (optional) */
+        .project-list-wrapper {
+            max-height: 1200px; /* Adjust as needed */
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- === HEADER / TOP NAVIGATION === -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Left Side: Logo and Title -->
+                <div class="flex items-center gap-3">
+                    <span class="bg-blue-700 p-2 rounded-lg text-white">
+                        <i data-lucide="buildings-2"></i>
+                    </span>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-sm text-gray-500">Taguig City</span>
+                        <span class="font-bold text-lg text-blue-800 leading-tight">Project Portal</span>
+                    </div>
+                </div>
+                
+                <!-- Right Side: Navigation and User -->
+                <div class="flex items-center gap-4">
+                    <!-- Updated Links -->
+                    <a href="index.html" class="text-blue-700 bg-blue-50 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="services.html" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="transparency.html" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Transparency</a>
+                    <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>
+                    
+                    <!-- Login/Logout Link -->
+                    <a id="auth-link" href="login.html" class="flex items-center gap-2 text-gray-600 hover:text-blue-700">
+                        <img id="user-avatar" class="h-8 w-8 rounded-full object-cover hidden" src="https://picsum.photos/seed/user/100/100" alt="User avatar">
+                        <span id="username-display" class="text-sm font-medium">Log In</span>
+                        <i id="user-chevron" data-lucide="chevron-down" class="w-4 h-4 hidden"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HERO / PAGE TITLE === -->
+    <header class="bg-blue-800 text-white relative">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Taguig City Public Project Portal</h1>
+            <p class="text-lg text-blue-100">Monitoring infrastructure and development projects in real-time.</p>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTENT === -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 -mt-10">
+        
+        <!-- Search and Filter Bar -->
+        <div class="bg-white p-5 rounded-lg shadow-lg mb-6 sticky top-20 z-40">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                <div>
+                    <label for="district" class="block text-sm font-medium text-gray-700">District</label>
+                    <select id="district" name="district" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                        <option>All Districts</option>
+                        <option>District 1</option>
+                        <option>District 2</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2">
+                    <label for="search" class="block text-sm font-medium text-gray-700">Search Project</label>
+                    <input type="text" name="search" id="search" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Search by project name or code...">
+                </div>
+                <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-md shadow-sm flex items-center justify-center gap-2">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Grid: Projects List and Map -->
+        <div class="lg:grid lg:grid-cols-5 lg:gap-8">
+            
+            <!-- Left Column: Project List -->
+            <div class="lg:col-span-3 space-y-4">
+                
+                <!-- Sort Controls -->
+                <div class="flex flex-wrap gap-4 mb-4 text-sm">
+                    <div class="flex items-center gap-2">
+                        <label for="sort" class="font-medium text-gray-700">Sort by:</label>
+                        <select id="sort" name="sort" class="border-gray-300 rounded-md shadow-sm py-1.5 px-2 text-sm">
+                            <option>Start Date</option>
+                            <option>Budget</option>
+                            <option>Project Name</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label for="order" class="font-medium text-gray-700">Order:</label>
+                        <select id="order" name="order" class="border-gray-300 rounded-md shadow-sm py-1.5 px-2 text-sm">
+                            <option>Descending</option>
+                            <option>Ascending</option>
+                        </select>
+                    </div>
+                    <span class="text-gray-500 ml-auto">5 Projects Found</span>
+                </div>
+
+                <!-- Project Card 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+                    <div class="flex flex-col md:flex-row">
+                        <img class="h-48 w-full md:w-56 object-cover" src="https://picsum.photos/seed/bridge/400/300" alt="BGC-Ortigas Link Bridge">
+                        <div class="p-5 flex flex-col justify-between w-full">
+                            <div>
+                                <h3 class="font-bold text-lg text-blue-900">BGC-Ortigas Link Bridge Maintenance</h3>
+                                <p class="text-sm text-gray-600 flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-gray-400"></i>Bonifacio Global City</p>
+                                <div class="my-3">
+                                    <label class="text-xs font-semibold text-gray-500">Budget Utilization: 85%</label>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-green-600 h-2.5 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-end text-sm mt-2">
+                                <div>
+                                    <span class="font-semibold text-gray-700">Start Date:</span> <span class="text-gray-600">Jan 15, 2024</span><br>
+                                    <span class="font-semibold text-gray-700">End Date:</span> <span class="text-gray-600">Dec 31, 2025</span>
+                                </div>
+                                <button class="view-details-btn bg-blue-100 text-blue-800 hover:bg-blue-200 font-semibold py-2 px-3 rounded-md text-xs" data-project-name="BGC-Ortigas Link Bridge Maintenance">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+                    <div class="flex flex-col md:flex-row">
+                        <img class="h-48 w-full md:w-56 object-cover" src="https://picsum.photos/seed/building/400/300" alt="New Taguig City Hall">
+                        <div class="p-5 flex flex-col justify-between w-full">
+                            <div>
+                                <h3 class="font-bold text-lg text-blue-900">New Taguig City Hall Complex</h3>
+                                <p class="text-sm text-gray-600 flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-gray-400"></i>Brgy. Ususan</p>
+                                <div class="my-3">
+                                    <label class="text-xs font-semibold text-gray-500">Budget Utilization: 40%</label>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-end text-sm mt-2">
+                                <div>
+                                    <span class="font-semibold text-gray-700">Start Date:</span> <span class="text-gray-600">Mar 01, 2023</span><br>
+                                    <span class="font-semibold text-gray-700">End Date:</span> <span class="text-gray-600">Jun 30, 2026</span>
+                                </div>
+                                <button class="view-details-btn bg-blue-100 text-blue-800 hover:bg-blue-200 font-semibold py-2 px-3 rounded-md text-xs" data-project-name="New Taguig City Hall Complex">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+                    <div class="flex flex-col md:flex-row">
+                        <img class="h-48 w-full md:w-56 object-cover" src="https://picsum.photos/seed/highway/400/300" alt="Lakeshore C6 Highway">
+                        <div class="p-5 flex flex-col justify-between w-full">
+                            <div>
+                                <h3 class="font-bold text-lg text-blue-900">Lakeshore C6 Highway Extension</h3>
+                                <p class="text-sm text-gray-600 flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-gray-400"></i>Lower Bicutan to Sucat</p>
+                                <div class="my-3">
+                                    <label class="text-xs font-semibold text-gray-500">Budget Utilization: 15%</label>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-red-500 h-2.5 rounded-full" style="width: 15%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-end text-sm mt-2">
+                                <div>
+                                    <span class="font-semibold text-gray-700">Start Date:</span> <span class="text-gray-600">Aug 20, 2024</span><br>
+                                    <span class="font-semibold text-gray-700">End Date:</span> <span class="text-gray-600">Dec 31, 2027</span>
+                                </div>
+                                <button class="view-details-btn bg-blue-100 text-blue-800 hover:bg-blue-200 font-semibold py-2 px-3 rounded-md text-xs" data-project-name="Lakeshore C6 Highway Extension">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center items-center gap-2 mt-6">
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-500 hover:bg-gray-50" disabled>&laquo; Prev</button>
+                    <button class="px-3 py-1 border border-blue-500 bg-blue-500 text-white rounded-md">1</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">2</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">3</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Next &raquo;</button>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Map -->
+            <div class="lg:col-span-2 mt-6 lg:mt-0">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden sticky top-44"> <!-- sticky top-44 = 16 (nav) + 20 (search) + 8 (gap) -->
+                    <!-- Map/Satellite Toggle -->
+                    <div class="p-3 border-b border-gray-200">
+                        <div class="isolate inline-flex rounded-md shadow-sm">
+                            <button class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">Map</button>
+                            <button class="relative -ml-px inline-flex items-center rounded-r-md bg-blue-600 text-white px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-blue-600 hover:bg-blue-700 focus:z-10">Satellite</button>
+                        </div>
+                    </div>
+                    <!-- Map Placeholder -->
+                    <!-- Replaced placeholder image with Google Maps Embed -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61799.42099637324!2d121.0218412945611!3d14.515442199250458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397cf4a54fe3001%3A0x2fae7af0a998d2ad!2sTaguig%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1761437342080!5m2!1sen!2sph" 
+                        class="w-full h-[700px] border-0" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer class="bg-blue-900 text-white mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Column 1: About -->
+                <div>
+                    <h5 class="font-bold text-lg mb-3">About</h5>
+                    <p class="text-sm text-blue-200">This portal provides transparent access to public projects within Taguig City.</p>
+                </div>
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-blue-100 hover:text-white">Project List</a></li>
+                        <li><a href="index.html" class="text-blue-100 hover:text-white">Project Map</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3: Government Links -->
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Related Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-blue-100 hover:text-white">Official Taguig Website</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white">National Gov Portal</a></li>
+                        <li><a href="transparency.html" class="text-blue-100 hover:text-white">Transparency Seal</a></li>
+                    </ul>
+                </div>
+                <!-- Column 4: Contact -->
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Contact Us</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2 text-blue-100"><i data-lucide="phone" class="w-4 h-4"></i>(02) 8XXX-XXXX</li>
+                        <li class="flex items-center gap-2 text-blue-100"><i data-lucide="mail" class="w-4 h-4"></i>info@taguig.gov.ph</li>
+                        <li class="flex items-center gap-2 text-blue-100"><i data-lucide="map-pin" class="w-4 h-4"></i>Taguig City Hall</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-blue-700 mt-8 pt-6 text-center text-sm text-blue-200">
+                <p>&copy; 2025 Taguig City Government. All rights reserved. (Project Demo)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- === DETAILS MODAL === -->
+    <div id="details-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 id="modal-title" class="text-lg font-semibold text-gray-900">Project Details</h3>
+                <button id="modal-close-btn" class="text-gray-400 hover:text-gray-600">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div class="p-6">
+                <p class="text-gray-600">This is where the detailed information for the project would appear. For this demo, we've just opened this modal.</p>
+                <img src="https://picsum.photos/seed/modal/400/200" alt="Project detail" class="w-full h-48 object-cover rounded-md mt-4">
+            </div>
+            <!-- Modal Footer -->
+            <div class="p-4 bg-gray-50 border-t rounded-b-lg flex justify-end">
+                <button id="modal-close-btn-footer" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md text-sm">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Initialize Lucide Icons & Custom JS (Firebase Enabled) -->
+    <script type="module">
+        // --- A. IMPORTS ---
+        import { initializeApp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged, 
+            signOut,
+            signInAnonymously,
+            signInWithCustomToken
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // --- B. INITIALIZE LUCIDE ---
+        lucide.createIcons();
+
+        // --- C. FIREBASE CONFIG & INIT ---
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        setLogLevel('Debug'); // Enable Firebase logging
+
+        // --- D. DOM ELEMENT SELECTORS ---
+        
+        // -- Details Modal Elements --
+        const detailsModal = document.getElementById('details-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const closeBtn = document.getElementById('modal-close-btn');
+        const closeBtnFooter = document.getElementById('modal-close-btn-footer');
+        const detailButtons = document.querySelectorAll('.view-details-btn');
+                
+        // -- Header Auth Elements --
+        const authLink = document.getElementById('auth-link'); // This is the link in the header
+        const usernameDisplay = document.getElementById('username-display');
+        const userAvatar = document.getElementById('user-avatar');
+        const userChevron = document.getElementById('user-chevron');
+
+        // --- F. FUNCTIONS (DETAILS MODAL) ---
+        const openDetailsModal = (projectName) => {
+            modalTitle.textContent = projectName;
+            detailsModal.classList.remove('hidden');
+        };
+
+        const closeDetailsModal = () => {
+            detailsModal.classList.add('hidden');
+        };
+        
+        // --- H. EVENT LISTENERS (DETAILS MODAL) ---
+        detailButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const projectName = button.getAttribute('data-project-name');
+                openDetailsModal(projectName);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeDetailsModal);
+        closeBtnFooter.addEventListener('click', closeDetailsModal);
+        detailsModal.addEventListener('click', (e) => {
+            if (e.target === detailsModal) {
+                closeDetailsModal();
+            }
+        });
+
+        // --- J. FIREBASE AUTH STATE LISTENER ---
+        // This script runs on every page to keep the header consistent
+        onAuthStateChanged(auth, (user) => {
+            if (user && !user.isAnonymous) {
+                // User is signed in
+                console.log('User is logged in:', user.email);
+                usernameDisplay.textContent = user.email; // Show full email
+                usernameDisplay.classList.add('max-w-[150px]', 'truncate'); // Prevent long emails from breaking layout
+                userAvatar.classList.remove('hidden');
+                userChevron.classList.remove('hidden');
+                
+                // Change auth link to be a LOGOUT button
+                authLink.href = "#"; // Make it not link anywhere
+                authLink.onclick = (e) => {
+                    e.preventDefault(); // Prevent link click
+                    signOut(auth);
+                };
+                
+            } else {
+                // User is logged out or anonymous
+                console.log('User is logged out or anonymous');
+                usernameDisplay.textContent = 'Log In';
+                usernameDisplay.classList.remove('max-w-[150px]', 'truncate');
+                userAvatar.classList.add('hidden');
+                userChevron.classList.add('hidden');
+
+                // Change auth button to be a LOGIN link
+                authLink.href = "login.html";
+                authLink.onclick = null; // Remove any previous click handler
+            }
+        });
+
+        // --- K. INITIAL ANONYMOUS/TOKEN SIGN-IN ---
+        const initialSignIn = async () => {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    console.log('Signing in with custom token...');
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    console.log('Signing in anonymously...');
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Error during initial sign-in:", error);
+            }
+        };
+        
+        // Start the app
+        initialSignIn();
+
+    </script>
+    
+</body>
+</html>

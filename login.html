@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Taguig Project Portal</title>
+    <!-- 1. Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 2. Include Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- 3. Include Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-md">
+        <!-- Logo and Title -->
+        <div class="flex items-center justify-center gap-3 mb-6">
+            <span class="bg-blue-700 p-2 rounded-lg text-white">
+                <i data-lucide="buildings-2"></i>
+            </span>
+            <div class="flex flex-col">
+                <span class="font-bold text-sm text-gray-500">Taguig City</span>
+                <span class="font-bold text-lg text-blue-800 leading-tight">Project Portal</span>
+            </div>
+        </div>
+
+        <!-- Auth Form Container -->
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 id="auth-modal-title" class="text-lg font-semibold text-gray-900">Log In to Your Account</h3>
+                <a href="taguig_portal.html" class="text-gray-400 hover:text-gray-600" title="Back to portal">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </a>
+            </div>
+            <!-- Modal Body -->
+            <form id="auth-form" class="p-6 space-y-4">
+                <div>
+                    <label for="auth-email" class="block text-sm font-medium text-gray-700">Email address</label>
+                    <input type="email" id="auth-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="you@example.com">
+                </div>
+                <div>
+                    <label for="auth-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="auth-password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="••••••••">
+                </div>
+                
+                <!-- Error Message -->
+                <p id="auth-error" class="text-sm text-red-600"></p>
+                <p id="auth-success" class="text-sm text-green-600"></p>
+
+                <!-- Submit Button -->
+                <button id="auth-submit-btn" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Log In
+                </button>
+
+                <!-- Toggle Link -->
+                <p class="text-sm text-center text-gray-500">
+                    <a href="#" id="auth-toggle-link" class="font-medium text-blue-600 hover:text-blue-500">
+                        Need an account? <span class="font-semibold">Sign Up</span>
+                    </a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase and Auth Logic -->
+    <script type="module">
+        // --- A. IMPORTS ---
+        import { initializeApp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // --- B. INITIALIZE LUCIDE ---
+        lucide.createIcons();
+
+        // --- C. FIREBASE CONFIG & INIT ---
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        setLogLevel('Debug');
+
+        // --- D. DOM ELEMENT SELECTORS ---
+        const authModalTitle = document.getElementById('auth-modal-title');
+        const authForm = document.getElementById('auth-form');
+        const authEmailInput = document.getElementById('auth-email');
+        const authPasswordInput = document.getElementById('auth-password');
+        const authSubmitBtn = document.getElementById('auth-submit-btn');
+        const authToggleLink = document.getElementById('auth-toggle-link');
+        const authError = document.getElementById('auth-error');
+        const authSuccess = document.getElementById('auth-success');
+
+        // --- E. STATE ---
+        let isLoginView = true;
+
+        // --- F. FUNCTIONS ---
+        const updateAuthModalView = () => {
+            if (isLoginView) {
+                authModalTitle.textContent = 'Log In to Your Account';
+                authSubmitBtn.textContent = 'Log In';
+                authToggleLink.innerHTML = 'Need an account? <span class="font-semibold text-blue-600 hover:text-blue-500">Sign Up</span>';
+            } else {
+                authModalTitle.textContent = 'Create a New Account';
+                authSubmitBtn.textContent = 'Sign Up';
+                authToggleLink.innerHTML = 'Have an account? <span class="font-semibold text-blue-600 hover:text-blue-500">Log In</span>';
+            }
+            authError.textContent = '';
+            authSuccess.textContent = '';
+            authForm.reset();
+        };
+
+        // --- G. EVENT LISTENERS ---
+        authToggleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            isLoginView = !isLoginView;
+            updateAuthModalView();
+        });
+
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = authEmailInput.value;
+            const password = authPasswordInput.value;
+            authError.textContent = '';
+            authSuccess.textContent = '';
+            authSubmitBtn.disabled = true;
+            authSubmitBtn.textContent = 'Processing...';
+
+            try {
+                if (isLoginView) {
+                    await signInWithEmailAndPassword(auth, email, password);
+                } else {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                }
+                
+                // Success!
+                authSuccess.textContent = 'Success! Redirecting you...';
+                // Redirect to the main portal page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'taguig_portal.html';
+                }, 1500);
+
+            } catch (error) {
+                console.error("Auth Error:", error.message);
+                authError.textContent = error.code.replace('auth/', '').replace(/-/g, ' ');
+                authSubmitBtn.disabled = false;
+                authSubmitBtn.textContent = isLoginView ? 'Log In' : 'Sign Up';
+            }
+        });
+    </script>
+</body>
+</html>

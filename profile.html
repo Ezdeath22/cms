@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Taguig Project Portal</title>
+    <!-- 1. Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Include Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 3. Include Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 4. Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Use a light gray background */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- === HEADER / TOP NAVIGATION === -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Left Side: Logo and Title -->
+                <div class="flex items-center gap-3">
+                    <span class="bg-blue-700 p-2 rounded-lg text-white">
+                        <i data-lucide="buildings-2"></i>
+                    </span>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-sm text-gray-500">Taguig City</span>
+                        <span class="font-bold text-lg text-blue-800 leading-tight">Project Portal</span>
+                    </div>
+                </div>
+                
+                <!-- Right Side: Navigation and User -->
+                <div class="flex items-center gap-4">
+                    <!-- Updated Links -->
+                    <a href="index.html" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="services.html" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="transparency.html" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Transparency</a>
+                    <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>
+                    
+                    <!-- Updated Auth Section: Now a dropdown -->
+                    <div id="auth-section" class="relative">
+                        <!-- Log In Link (Logged out state) -->
+                        <a id="auth-link-login" href="login.html" class="flex items-center gap-2 text-gray-600 hover:text-blue-700">
+                            <span class="text-sm font-medium">Log In</span>
+                        </a>
+
+                        <!-- Profile Dropdown (Logged in state) -->
+                        <div id="auth-dropdown" class="hidden">
+                            <button id="auth-dropdown-button" class="flex items-center gap-2 text-gray-600 hover:text-blue-700">
+                                <img id="user-avatar" class="h-8 w-8 rounded-full object-cover" src="https://picsum.photos/seed/user/100/100" alt="User avatar">
+                                <span id="username-display" class="text-sm font-medium max-w-[150px] truncate">user@email.com</span>
+                                <i id="user-chevron" data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </button>
+                            <!-- Dropdown Menu -->
+                            <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>
+                                <button id="logout-button" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Log Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === MAIN CONTENT === -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow">
+        
+        <!-- Page Content -->
+        <div class="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-semibold text-gray-900 mb-6">Edit Your Profile</h1>
+            
+            <form id="profile-form" class="space-y-4">
+                <div>
+                    <label for="profile-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" id="profile-email" name="email" disabled class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-500 focus:outline-none sm:text-sm" placeholder="you@example.com">
+                    <p class="mt-1 text-xs text-gray-500">Email address cannot be changed.</p>
+                </div>
+                <div>
+                    <label for="profile-name" class="block text-sm font-medium text-gray-700">Display Name</label>
+                    <input type="text" id="profile-name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Full Name">
+                </div>
+                
+                <!-- Message Area -->
+                <p id="profile-message" class="text-sm"></p>
+
+                <!-- Submit Button -->
+                <button id="profile-submit-btn" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Save Changes
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer class="bg-blue-900 text-white mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="border-t border-blue-700 pt-6 text-center text-sm text-blue-200">
+                <p>&copy; 2025 Taguig City Government. All rights reserved. (Project Demo)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 5. Initialize Lucide Icons & Custom JS (Firebase Enabled) -->
+    <script type="module">
+        // --- A. IMPORTS ---
+        import { initializeApp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged, 
+            signOut,
+            signInAnonymously,
+            signInWithCustomToken,
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // --- B. INITIALIZE LUCIDE ---
+        lucide.createIcons();
+
+        // --- C. FIREBASE CONFIG & INIT ---
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        setLogLevel('Debug'); // Enable Firebase logging
+
+        // --- D. DOM ELEMENT SELECTORS ---
+        
+        // -- Header Auth Elements --
+        const authLinkLogin = document.getElementById('auth-link-login');
+        const authDropdown = document.getElementById('auth-dropdown');
+        const authDropdownButton = document.getElementById('auth-dropdown-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const logoutButton = document.getElementById('logout-button');
+        const usernameDisplay = document.getElementById('username-display');
+        const userAvatar = document.getElementById('user-avatar');
+
+        // -- Profile Form Elements --
+        const profileForm = document.getElementById('profile-form');
+        const profileEmailInput = document.getElementById('profile-email');
+        const profileNameInput = document.getElementById('profile-name');
+        const profileMessage = document.getElementById('profile-message');
+        const profileSubmitBtn = document.getElementById('profile-submit-btn');
+
+        // --- J. FIREBASE AUTH STATE LISTENER ---
+        onAuthStateChanged(auth, (user) => {
+            if (user && !user.isAnonymous) {
+                // User is signed in
+                console.log('User is logged in:', user.email);
+                usernameDisplay.textContent = user.displayName || user.email;
+                userAvatar.classList.remove('hidden');
+                
+                authLinkLogin.classList.add('hidden');
+                authDropdown.classList.remove('hidden');
+
+                // Populate profile page
+                if (profileEmailInput) {
+                    profileEmailInput.value = user.email;
+                    profileNameInput.value = user.displayName || '';
+                }
+                
+            } else {
+                // User is logged out or anonymous
+                console.log('User is logged out or anonymous');
+                authLinkLogin.classList.remove('hidden');
+                authDropdown.classList.add('hidden');
+
+                // If on profile page and logged out, redirect to login
+                if (profileForm) {
+                    // Use './login.html' for a relative path
+                    window.location.href = './login.html';
+                }
+            }
+        });
+
+        // --- K. INITIAL ANONYMOUS/TOKEN SIGN-IN ---
+        const initialSignIn = async () => {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    console.log('Signing in with custom token...');
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    console.log('Signing in anonymously...');
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Error during initial sign-in:", error);
+            }
+        };
+        
+        // --- L. DROPDOWN EVENT LISTENERS ---
+        // Toggle dropdown menu
+        authDropdownButton.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Log out
+        logoutButton.addEventListener('click', () => {
+            signOut(auth);
+            dropdownMenu.classList.add('hidden');
+        });
+
+        // Close dropdown if clicking outside
+        window.addEventListener('click', (e) => {
+            if (!authDropdown.contains(e.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // --- M. PROFILE FORM EVENT LISTENER ---
+        if (profileForm) {
+            profileForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const displayName = profileNameInput.value;
+                const user = auth.currentUser;
+
+                if (!user) {
+                    profileMessage.textContent = 'You must be logged in to do that.';
+                    profileMessage.className = 'text-sm text-red-600';
+                    return;
+                }
+
+                profileMessage.textContent = 'Saving...';
+                profileMessage.className = 'text-sm text-gray-600';
+                profileSubmitBtn.disabled = true;
+
+                try {
+                    await updateProfile(user, { displayName: displayName });
+                    profileMessage.textContent = 'Profile updated successfully!';
+                    profileMessage.className = 'text-sm text-green-600';
+                    // Update header display name immediately
+                    usernameDisplay.textContent = displayName || user.email;
+                } catch (error) {
+                    console.error('Profile update error:', error);
+                    profileMessage.textContent = 'Error updating profile.';
+                    profileMessage.className = 'text-sm text-red-600';
+                } finally {
+                    profileSubmitBtn.disabled = false;
+                }
+            });
+        }
+
+        // Start the app
+        initialSignIn();
+
+    </script>
+    
+</body>
+</html>
+

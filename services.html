@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Taguig Project Portal</title>
+    <!-- 1. Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Include Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 3. Include Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 4. Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Use a light gray background */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- === HEADER / TOP NAVIGATION === -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Left Side: Logo and Title -->
+                <div class="flex items-center gap-3">
+                    <span class="bg-blue-700 p-2 rounded-lg text-white">
+                        <i data-lucide="buildings-2"></i>
+                    </span>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-sm text-gray-500">Taguig City</span>
+                        <span class="font-bold text-lg text-blue-800 leading-tight">Project Portal</span>
+                    </div>
+                </div>
+                
+                <!-- Right Side: Navigation and User -->
+                <div class="flex items-center gap-4">
+                    <!-- Updated Links -->
+                    <a href="index.html" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="services.html" class="text-blue-700 bg-blue-50 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="transparency.html" class="text-gray-600 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Transparency</a>
+                    <span class="w-px h-6 bg-gray-200" aria-hidden="true"></span>
+                    
+                    <!-- Login/Logout Link -->
+                    <a id="auth-link" href="login.html" class="flex items-center gap-2 text-gray-600 hover:text-blue-700">
+                        <img id="user-avatar" class="h-8 w-8 rounded-full object-cover hidden" src="https://picsum.photos/seed/user/100/100" alt="User avatar">
+                        <span id="username-display" class="text-sm font-medium">Log In</span>
+                        <i id="user-chevron" data-lucide="chevron-down" class="w-4 h-4 hidden"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HERO / PAGE TITLE === -->
+    <header class="bg-blue-800 text-white relative">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">City Services</h1>
+            <p class="text-lg text-blue-100">Find information on business permits, public records, and more.</p>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTENT === -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 -mt-10">
+        
+        <!-- Page Content -->
+        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">Explore Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Card 1 -->
+                <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                    <i data-lucide="briefcase" class="w-10 h-10 text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Business Permits</h3>
+                    <p class="text-sm text-gray-600 mb-4">Apply for new permits or renew your existing business license online.</p>
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Learn More &raquo;</a>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                    <i data-lucide="home" class="w-10 h-10 text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Real Property Tax</h3>
+                    <p class="text-sm text-gray-600 mb-4">Check your RPT balance and pay your taxes conveniently online.</p>
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Learn More &raquo;</a>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                    <i data-lucide="file-text" class="w-10 h-10 text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Public Records</h3>
+                    <p class="text-sm text-gray-600 mb-4">Request copies of birth certificates, marriage licenses, and other public documents.</p>
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Learn More &raquo;</a>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                    <i data-lucide="heart-pulse" class="w-10 h-10 text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Health Services</h3>
+                    <p class="text-sm text-gray-600 mb-4">Find schedules for health centers, vaccination drives, and medical missions.</p>
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Learn More &raquo;</a>
+                </div>
+                <!-- Service Card 5 -->
+                <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Scholarship Programs</h3>
+                    <p class="text-sm text-gray-600 mb-4">Apply for city-funded scholarships and educational assistance.</p>
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Learn More &raquo;</a>
+                </div>
+                <!-- Service Card 6 -->
+                <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                    <i data-lucide="alert-triangle" class="w-10 h-10 text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Emergency Services</h3>
+                    <p class="text-sm text-gray-600 mb-4">Find contact numbers for police, fire, and medical emergencies.</p>
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Learn More &raquo;</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer class="bg-blue-900 text-white mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Column 1: About -->
+                <div>
+                    <h5 class="font-bold text-lg mb-3">About</h5>
+                    <p class="text-sm text-blue-200">This portal provides transparent access to public projects within Taguig City.</p>
+                </div>
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-blue-100 hover:text-white">Project List</a></li>
+                        <li><a href="index.html" class="text-blue-100 hover:text-white">Project Map</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3: Government Links -->
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Related Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-blue-100 hover:text-white">Official Taguig Website</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-white">National Gov Portal</a></li>
+                        <li><a href="transparency.html" class="text-blue-100 hover:text-white">Transparency Seal</a></li>
+                    </ul>
+                </div>
+                <!-- Column 4: Contact -->
+                <div>
+                    <h5 class="font-bold text-lg mb-3">Contact Us</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2 text-blue-100"><i data-lucide="phone" class="w-4 h-4"></i>(02) 8XXX-XXXX</li>
+                        <li class="flex items-center gap-2 text-blue-100"><i data-lucide="mail" class="w-4 h-4"></i>info@taguig.gov.ph</li>
+                        <li class="flex items-center gap-2 text-blue-100"><i data-lucide="map-pin" class="w-4 h-4"></i>Taguig City Hall</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-blue-700 mt-8 pt-6 text-center text-sm text-blue-200">
+                <p>&copy; 2025 Taguig City Government. All rights reserved. (Project Demo)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 5. Initialize Lucide Icons & Custom JS (Firebase Enabled) -->
+    <script type="module">
+        // --- A. IMPORTS ---
+        import { initializeApp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged, 
+            signOut,
+            signInAnonymously,
+            signInWithCustomToken
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // --- B. INITIALIZE LUCIDE ---
+        lucide.createIcons();
+
+        // --- C. FIREBASE CONFIG & INIT ---
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        setLogLevel('Debug'); // Enable Firebase logging
+
+        // --- D. DOM ELEMENT SELECTORS ---
+        
+        // -- Header Auth Elements --
+        const authLink = document.getElementById('auth-link'); // This is the link in the header
+        const usernameDisplay = document.getElementById('username-display');
+        const userAvatar = document.getElementById('user-avatar');
+        const userChevron = document.getElementById('user-chevron');
+
+        // --- J. FIREBASE AUTH STATE LISTENER ---
+        // This script runs on every page to keep the header consistent
+        onAuthStateChanged(auth, (user) => {
+            if (user && !user.isAnonymous) {
+                // User is signed in
+                console.log('User is logged in:', user.email);
+                usernameDisplay.textContent = user.email; // Show full email
+                usernameDisplay.classList.add('max-w-[150px]', 'truncate'); // Prevent long emails from breaking layout
+                userAvatar.classList.remove('hidden');
+                userChevron.classList.remove('hidden');
+                
+                // Change auth link to be a LOGOUT button
+                authLink.href = "#"; // Make it not link anywhere
+                authLink.onclick = (e) => {
+                    e.preventDefault(); // Prevent link click
+                    signOut(auth);
+                };
+                
+            } else {
+                // User is logged out or anonymous
+                console.log('User is logged out or anonymous');
+                usernameDisplay.textContent = 'Log In';
+                usernameDisplay.classList.remove('max-w-[150px]', 'truncate');
+                userAvatar.classList.add('hidden');
+                userChevron.classList.add('hidden');
+
+                // Change auth button to be a LOGIN link
+                authLink.href = "login.html";
+                authLink.onclick = null; // Remove any previous click handler
+            }
+        });
+
+        // --- K. INITIAL ANONYMOUS/TOKEN SIGN-IN ---
+        const initialSignIn = async () => {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    console.log('Signing in with custom token...');
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    console.log('Signing in anonymously...');
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Error during initial sign-in:", error);
+            }
+        };
+        
+        // Start the app
+        initialSignIn();
+
+    </script>
+    
+</body>
+</html>
